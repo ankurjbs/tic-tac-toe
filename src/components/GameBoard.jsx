@@ -5,16 +5,17 @@ const initialGameBoard = [
   [null, null, null],
   [null, null, null],
 ];
-export default function GameBoard() {
+export default function GameBoard({onSelectSquare,activePlayerSymbol}) {
    const [gameBoard,setGameBoard] = useState(initialGameBoard);
    function handleSelectSqaure(rowIndex,colIndex){
         setGameBoard((preGameBoard)=>{
-            /* // objects and array(which technically are objects) are reference values in Javascript. We should therfore not mutate them directly - instead create (deep) copy first (an immutable way). Because if your state is array or an object you are dealing with reference value in Javascript.
-            // preGameBoard[rowIndex][colIndex]= 'x'; cant use like this directly */
+            // objects and array(which technically are objects) are reference values in Javascript. We should therfore not mutate them directly - instead create (deep) copy first (an immutable way). Because if your state is array or an object you are dealing with reference value in Javascript.
+            // preGameBoard[rowIndex][colIndex]= 'x'; cant use like this directly 
             const updatedBoard = [...preGameBoard.map(innerArray=>[...innerArray])];
-            updatedBoard[rowIndex][colIndex]= 'x';
+            updatedBoard[rowIndex][colIndex]= activePlayerSymbol;
             return updatedBoard;
         });
+        onSelectSquare();
    }
   return (
     <ol id="game-board">

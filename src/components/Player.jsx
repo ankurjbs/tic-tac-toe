@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function Player({ initialName, symbol }) {
+export default function Player({ initialName, symbol ,isActive}) {
   // we can use same state if we want to manage different piece of work
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
@@ -36,7 +36,7 @@ export default function Player({ initialName, symbol }) {
     buttonCaption = "Save";
   }
   return (
-    <li>
+    <li className={isActive ? 'active' : undefined}>
       <span className="player">
         {editablePlayerName}
 
