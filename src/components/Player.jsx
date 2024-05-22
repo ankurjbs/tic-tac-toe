@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function Player({ initialName, symbol ,isActive}) {
+export default function Player({ initialName, symbol ,isActive,onChageName}) {
   // we can use same state if we want to manage different piece of work
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
@@ -14,6 +14,10 @@ export default function Player({ initialName, symbol ,isActive}) {
     //now In react, when updating your state base on the previous value of that state we cant use like above, we shoud pass a function to that state updating function. This is strong recommendation of the Reat team. This fn will automatically be called by React and will create the guaranteed latest state value (instatntly). if we intilize two times above fn. o/p should be true then false. but this not will work as expted (take 1/2 mili second).
 
     setIsEditing((editing) => !editing);
+    if(isEditing){
+      onChageName(symbol,playerName);
+    }
+    
   }
 
   function handleChange(event) {
